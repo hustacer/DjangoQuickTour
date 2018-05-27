@@ -1,11 +1,23 @@
+{% load static %}
+
 <htmL>
     <head>
-        <title>模板测试</title>
+        <title>welcome</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'blog/css/style.css' %}">
     </head>
     <body>
-        <h1>么么哒</h1>
-        <br/>
-        <img src="https://msp.c.yimg.jp/yjimage?q=5n1rIpcXyLF0wuEq10J5hNbglUviQ7EexwhekEpo_tBEgGGXAUXdj1ZCM2iNE8f1jusm5yxiAiS620YVQN_agml.g15cdfhNN7OPyiRc95Dl6fL2TxwWu.m5F4CUzPLxpzP5tIv6drIaTC_WBg--&sig=138ci11qf&x=225&y=225" />
-        <span>{{ authorName }}, 这是个测试的模板</span>
+        <div style="top:20px;left:20px;position:absolute;">
+            <img src="https://msp.c.yimg.jp/yjimage?q=5n1rIpcXyLF0wuEq10J5hNbglUviQ7EexwhekEpo_tBEgGGXAUXdj1ZCM2iNE8f1jusm5yxiAiS620YVQN_agml.g15cdfhNN7OPyiRc95Dl6fL2TxwWu.m5F4CUzPLxpzP5tIv6drIaTC_WBg--&sig=138ci11qf&x=225&y=225" />
+        </div>
+        <div style="top:20px;left:200px;position:absolute;">
+            <span class="pageTitle">么么哒</span>
+        </div>
+        <div style="left:20px;top:150px;position:absolute;width:600px;background-color:#FFFFFF;padding:20px;">
+        {% for article in all_articles %}
+            <h2 class="articleTitle">{{article.title}}</h2>
+            <p class="articleAuthor">by: {{article.author}} {{article.timestamp}}</p>
+            <span class="articleBody">{{article.body|linebreaks}}</span>
+        {%  endfor %}
+        </div>
     </body>
 </html>
