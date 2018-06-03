@@ -6,18 +6,11 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from blog.models import *
+from django.core.paginator import *
 
-def index(reqeust):
-#    return HttpResponse('''<center><h1>For Fun</h1></center>
-#            <span style='font-weight:bold;'>孔子曰:</span><span style='color:gray;'>学而时习之,不亦说乎</span>''')
+def index(request):
     #loader的get_template函数加载页面模板
-    template = loader.get_template('blog/index.html')
-    allArticles = Article.objects.all().order_by('-timestamp')
-    #声明context字典
-    context = {
-        'all_articles': allArticles,
-    }
-    return HttpResponse(template.render(context, reqeust))
+    return indexInPages(request, 1)
 
 def article(reqeust, articleID):
     template = loader.get_template('blog/article.html')
@@ -26,3 +19,13 @@ def article(reqeust, articleID):
         'article': article,
     }
     return HttpResponse(template.render(context, reqeust))
+
+def indexInPages(request, pageNo):
+    template = loader.get_template('blog/index.html')
+    allArticles = Article.objects.all().order_by('-timestamp')
+    p = Paginator(allArticles, 5)
+    articlesInPage = p.page(pageNo)
+    context = {
+        'all_articles' : articlesInPage,
+    }
+    return HttpResponse(template.render(context, request))
