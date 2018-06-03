@@ -18,3 +18,11 @@ def index(reqeust):
         'all_articles': allArticles,
     }
     return HttpResponse(template.render(context, reqeust))
+
+def article(reqeust, articleID):
+    template = loader.get_template('blog/article.html')
+    article = Article.objects.get(id=articleID)
+    context = {
+        'article': article,
+    }
+    return HttpResponse(template.render(context, reqeust))

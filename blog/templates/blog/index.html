@@ -13,11 +13,13 @@
             <span class="pageTitle">么么哒</span>
         </div>
         <div style="left:20px;top:150px;position:absolute;width:600px;background-color:#FFFFFF;padding:20px;">
-        {% for article in all_articles %}
-            <h2 class="articleTitle">{{article.title}}</h2>
-            <p class="articleAuthor">by: {{article.author}} {{article.timestamp}}</p>
-            <span class="articleBody">{{article.body|linebreaks}}</span>
-        {%  endfor %}
+            {% for article in all_articles %}
+                <h2 class="articleTitle">{{article.title}}</h2>
+                <p class="articleAuthor">by: {{article.author}} {{article.timestamp}}</p>
+                <span class="articleBody">{{article.body|slice:'200'}}...</span>
+                <br/>
+                <a href="article/{{article.id}}">查看全文</a>
+            {%  endfor %}
         </div>
     </body>
 </html>
