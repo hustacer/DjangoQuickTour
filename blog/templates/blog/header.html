@@ -1,0 +1,14 @@
+{% load static %}
+<div id="headerLogoSection">
+    <img src="https://msp.c.yimg.jp/yjimage?q=5n1rIpcXyLF0wuEq10J5hNbglUviQ7EexwhekEpo_tBEgGGXAUXdj1ZCM2iNE8f1jusm5yxiAiS620YVQN_agml.g15cdfhNN7OPyiRc95Dl6fL2TxwWu.m5F4CUzPLxpzP5tIv6drIaTC_WBg--&sig=138ci11qf&x=225&y=225" />
+</div>
+<div id="headerTitleSection">
+    <span class="siteTitle">well</span>
+</div>
+<div id="headerNavSection">
+    {% for category in categories %}
+    <span class="categoryItem">
+        <a class="categoryLink" href="category/{{category.id}}">{{category.name}}</a>
+    </span>
+    {% endfor %}
+</div>
